@@ -1,0 +1,7 @@
+input {
+  syslog {
+    host => <%= @syslog_listen_address %>
+    port => <%= @syslog_port %>
+    type => "syslog"
+  }
+}
