@@ -1,0 +1,16 @@
+output {
+  rabbitmq {
+    host: <%= @rabbitmq_host %>
+    <% if @rabbitmq_port %>
+    port: <%= @rabbitmq_port %>
+    <% end %>
+    <% if @rabbitmq_user %>
+    user: <%= @rabbitmq_user %>
+    <% end %>
+    <% if @rabbitmq_password %>
+    password: <%= @rabbitmq_password %>
+    <% end %>
+    exchange: <%= @rabbitmq_exchange %>
+    exchange_type: <%= rabbitmq_exchange_type %>
+  }
+}
