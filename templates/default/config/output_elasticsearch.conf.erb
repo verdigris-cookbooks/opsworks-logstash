@@ -1,0 +1,16 @@
+output {
+  elasticsearch {
+    <% if @output_elasticsearch_host %>
+    host => "<%= @output_elasticsearch_host %>"
+    <% end %>
+    <% if @output_elasticsearch_cluster %>
+    cluster => "<%= @outputelasticsearch_cluster %>"
+    <% end %>
+    <% if @output_elasticsearch_type %>
+    type => "<%= @output_elasticsearch_type %>"
+    <% end %>
+    <% if @output_elasticsearch_index %>
+    index => "<%= @output_elasticsearch_index %>"
+    <% end %>
+  }
+}
