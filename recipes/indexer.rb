@@ -41,6 +41,6 @@ logstash_config name do
   action :create
   templates_cookbook 'opsworks_logstash'
   templates ['opsworks_logstash']['indexer']['templates']
-  variables(['opsworks_logstash']['indexer']['template_variables'])
+  variables ['opsworks_logstash']['indexer']['template_variables']
   notifies :restart, "logstash_service[#{name}]", :delayed
 end

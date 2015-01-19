@@ -1,14 +1,13 @@
 input {
   rabbitmq {
-    host => <%= @rabbitmq_host %>
-    port => <%= @rabbitmq_port %>
-    <% if @rabbitmq_user %>
-    user => <%= @rabbitmq_user %>
+    host => <%= @input_rabbitmq_host %>
+    port => <%= @input_rabbitmq_port %>
+    <% if @input_rabbitmq_user %>
+    user => <%= @input_rabbitmq_user %>
     <% end %>
-    <% if @rabbitmq_password %>
-    password => <%= @rabbitmq_password %>
+    <% if @input_rabbitmq_password %>
+    password => <%= @input_rabbitmq_password %>
     <% end %>
-    exchange => <%= @rabbitmq_exchange %>
-    exchange_type => <%= rabbitmq_exchange_type %>
+    exchange => <%= @input_rabbitmq_exchange %>
   }
 }
