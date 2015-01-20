@@ -1,0 +1,16 @@
+input {
+  <%= LogstashConf.section_to_str(node['logstash']['instance']['indexer']['inputs']) %>
+}
+
+<% unless node['logstash']['instance']['indexer']['filters'].empty? -%>
+filter {
+  <%= LogstashConf.section_to_str(node['logstash']['instance']['indexer']['filters'], node['logstash']['instance']['indexer']['version'], @patterns_dir) %>
+}
+<% end -%>
+
+output {
+  <% if node['logstash']['instance']['indexer']['debug'] -%>
+  stdout { debug => true }
+  <% end -%>
+  <%= LogstashConf.section_to_str(node['logstash']['instance']['indexer']['outputs']) %>
+}

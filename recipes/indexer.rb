@@ -27,12 +27,21 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-include_recipe 'opsworks_logstash::default'
+# Default to instance's first layer name
+name = node[:opsworks][:instance][:layers][0] || "indexer"
 
-logstash_config node['opsworks_logstash']['instance_name'] do
+# Install logstash
+logstash_instance name do
   action :create
-  templates_cookbook 'opsworks_logstash'
-  templates node['opsworks_logstash']['indexer']['templates']
-  variables node['opsworks_logstash']['indexer']['template_variables']
+end
+
+# Enable and start logstash service
+logstash_service name do
+  action :enable
+end
+
+# Generate configuration files
+logstash_config name do
+  action :create
   notifies :restart, "logstash_service[#{name}]", :delayed
 end
