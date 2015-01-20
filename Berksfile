@@ -2,4 +2,4 @@ source "https://supermarket.getchef.com"
 
 metadata
 
-cookbook 'logstash'
+cookbook 'logstash', '~> 0.11'
