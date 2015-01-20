@@ -17,14 +17,14 @@ describe 'opsworks_logstash::indexer' do
   end
 
   it 'installs logstash instance' do
-    expect(chef_run).to create_logstash_instance 'indexer'
+    expect(chef_run).to create_logstash_instance node['opsworks_logstash']['instance_name']
   end
 
   it 'enables logstash service' do
-    expect(chef_run).to enable_logstash_service 'indexer'
+    expect(chef_run).to enable_logstash_service node['opsworks_logstash']['instance_name']
   end
 
   it 'creates logstash configuration' do
-    expect(chef_run).to create_logstash_config 'indexer'
+    expect(chef_run).to create_logstash_config node['opsworks_logstash']['instance_name']
   end
 end

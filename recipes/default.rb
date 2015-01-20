@@ -1,7 +1,7 @@
 # Encoding: utf-8
 #
 # Cookbook Name:: opsworks_logstash
-# Recipe:: indexer
+# Recipe:: default
 #
 # Copyright (c) 2014, Verdigris Technologies Inc.
 # All rights reserved.
@@ -27,12 +27,12 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-include_recipe 'opsworks_logstash::default'
+name = node['opsworks_logstash']['instance_name']
 
-logstash_config node['opsworks_logstash']['instance_name'] do
+logstash_instance name do
   action :create
-  templates_cookbook 'opsworks_logstash'
-  templates node['opsworks_logstash']['indexer']['templates']
-  variables node['opsworks_logstash']['indexer']['template_variables']
-  notifies :restart, "logstash_service[#{name}]", :delayed
+end
+
+logstash_service name do
+  action :enable
 end
