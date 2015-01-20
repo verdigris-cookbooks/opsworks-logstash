@@ -1,13 +1,13 @@
 input {
   rabbitmq {
-    host => <%= @input_rabbitmq_host %>
+    host => "<%= @input_rabbitmq_host %>"
     port => <%= @input_rabbitmq_port %>
     <% if @input_rabbitmq_user %>
-    user => <%= @input_rabbitmq_user %>
+    user => "<%= @input_rabbitmq_user %>"
     <% end %>
     <% if @input_rabbitmq_password %>
-    password => <%= @input_rabbitmq_password %>
+    password => "<%= @input_rabbitmq_password %>"
     <% end %>
-    exchange => <%= @input_rabbitmq_exchange %>
+    exchange => "<%= @input_rabbitmq_exchange %>"
   }
 }
