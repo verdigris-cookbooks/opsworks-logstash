@@ -1,5 +1,7 @@
 # opsworks_logstash
 
+[![Build Status](https://travis-ci.org/verdigris-cookbooks/opsworks-logstash.svg)](https://travis-ci.org/verdigris-cookbooks/opsworks-logstash)
+
 This is a wrapper cookbook which utilizes the [logstash cookbook](https://github.com/lusis/chef-logstash)
 for installing [Logstash](http://logstash.net/) on AWS OpsWorks.
 
