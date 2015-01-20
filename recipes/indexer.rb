@@ -37,6 +37,8 @@ logstash_service name do
   action :enable
 end
 
+Chef::Log.info("Logstash Indexer Templates:\n#{['opsworks']['indexer']['templates']}")
+
 logstash_config name do
   action :create
   templates_cookbook 'opsworks_logstash'
