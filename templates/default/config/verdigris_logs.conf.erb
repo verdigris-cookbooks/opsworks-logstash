@@ -1,0 +1,54 @@
+input {
+  <%= LogstashConf.section_to_str(node['logstash']['instance'][@instance_name]['inputs']) %>
+}
+
+filter {
+  if [type] == "syslog" {
+    grok {
+      break_on_match => false
+      patterns_dir => "<%= @patterns_dir %>"
+      match => [ "message", "%{BUD_SYSLOGLINE}" ]
+      overwrite => [ "message" ]
+    }
+    grok {
+      break_on_match => false
+      patterns_dir => "@patterns_dir"
+      match => [ "message", "%{BUD_ERROR_CODE:bud_error_code}" ]
+    }
+    syslog_pri {}
+    if [program] == "connmand" and [syslog_severity_code] <= 3 {
+      if "lookup" in [message] {
+        mutate {
+          add_field => { "bud_error_code" => "CON100" }
+        }
+      } else if "time" in [message] or "Time" in [message] {
+        mutate {
+          add_field => { "bud_error_code" => "CON101" }
+        }
+      } else if "Aborting" in [message] {
+        mutate {
+          add_field => { "bud_error_code" => "CON102" }
+        }
+      } else if "DHCP" in [message] {
+        mutate {
+          add_field => { "bud_error_code" => "CON103" }
+        }
+      } else {
+        mutate {
+          add_field => { "bud_error_code" => "CON000" }
+        }
+      }
+
+      if [syslog_facility] == "kernel" and [syslog_severity] == "emergency" and "Kernel panic" in [message] {
+        add_field => { "bud_error_code" => "REB102" }
+      }
+    }
+  }
+}
+
+output {
+  <% if node['logstash']['instance'][@instance_name]['debug'] -%>
+  stdout { debug => true }
+  <% end -%>
+  <%= LogstashConf.section_to_str(node['logstash']['instance'][@instance_name]['outputs']) %>
+}
