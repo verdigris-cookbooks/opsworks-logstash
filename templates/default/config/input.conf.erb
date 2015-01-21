@@ -1,0 +1,3 @@
+input {
+  <%= LogstashConf.section_to_str(node['logstash']['instance'][@instance_name]['inputs']) %>
+}
