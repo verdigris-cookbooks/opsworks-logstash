@@ -1,3 +1,7 @@
+# v0.2
+
+* Added generic templates
+
 # v0.1.1
 
 * Fix `input_rabbitmq` template
