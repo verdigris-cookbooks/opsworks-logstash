@@ -1,0 +1,5 @@
+filter {
+  <%= "if [type] == \"#{@type}\" {" if @type %>
+    <%= LogstashConf.section_to_str(node['logstash']['instance'][@instance_name]['filters'], node['logstash']['instance'][@instance_name]['version'], @patterns_dir) %>
+  <%= "}" if @type %>
+}
