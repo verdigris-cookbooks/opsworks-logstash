@@ -1,6 +1,6 @@
 output {
-  <% if node['logstash']['instance']['indexer']['debug'] -%>
+  <% if node['logstash']['instance'][@instance_name]['debug'] -%>
   stdout { debug => true }
   <% end -%>
-  <%= LogstashConf.section_to_str(node['logstash']['instance']['indexer']['outputs']) %>
+  <%= LogstashConf.section_to_str(node['logstash']['instance'][@instance_name]['outputs']) %>
 }
