@@ -1,3 +1,7 @@
+# v0.3.1
+
+* Updates default attributes for indexer and shipper recipes
+
 # v0.3
 
 * `opsworks_logstash::shipper` recipe added
