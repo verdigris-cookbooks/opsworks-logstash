@@ -45,3 +45,8 @@ logstash_config name do
   action :create
   notifies :restart, "logstash_service[#{name}]", :delayed
 end
+
+# Generate and install patterns
+logstash_pattern name do
+  action :create
+end

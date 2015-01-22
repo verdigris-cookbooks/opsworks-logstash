@@ -30,4 +30,8 @@ describe 'opsworks_logstash::indexer' do
   it 'creates logstash configuration' do
     expect(chef_run).to create_logstash_config opsworks_instance[:layers][0]
   end
+
+  it 'creates custom grok pattern' do
+    expect(chef_run).to create_logstash_pattern opsworks_instance[:layers][0]
+  end
 end
