@@ -40,7 +40,9 @@ filter {
       }
 
       if [syslog_facility] == "kernel" and [syslog_severity] == "emergency" and "Kernel panic" in [message] {
-        add_field => { "bud_error_code" => "REB102" }
+        mutate {
+          add_field => { "bud_error_code" => "REB102" }
+        }
       }
     }
   }
