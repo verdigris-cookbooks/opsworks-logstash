@@ -1,3 +1,10 @@
+# v0.3
+
+* `opsworks_logstash::shipper` recipe added
+* Support for custom patterns added
+* Verdigris specific templates added
+* Remove default `config_templates_variables` attribute for indexer
+
 # v0.2
 
 * Added generic templates
