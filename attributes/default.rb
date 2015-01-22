@@ -8,3 +8,6 @@ indexer['config_templates_variables'] = { instance_name: "indexer" }
 indexer['inputs'] = []
 indexer['filters'] = []
 indexer['outputs'] = []
+indexer['pattern_templates'] = {}
+indexer['pattern_templates_cookbook'] = 'opsworks_logstash'
+indexer['pattern_templates_variables'] = { instance_name: "indexer" }
