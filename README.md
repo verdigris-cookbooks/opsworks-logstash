@@ -17,10 +17,20 @@ for installing [Logstash](http://logstash.net/) on AWS OpsWorks.
 
 * **logstash** (~> 0.11)
 
+## Attributes
+
+| Key                                      |  Type  | Description                                                                | Default                                                 |
+|:-----------------------------------------|:------:|:---------------------------------------------------------------------------|:--------------------------------------------------------|
+| `['opsworks_logstash']['instance_name']` | String | Instance name for Logstash; used for setting up directory and service name | EC2 instance name in AWS OpsWorks, `"server"` otherwise |
+
 ## Recipes
 
-### indexer
+### default
 
-Installs Logstash in indexer mode. By default, it will try to fetch logs from
-RabbitMQ exchange and index them into Elasticsearch. This behavior can be
-overriden with `node['opsworks_logstash']['indexer']` attributes.
+Installs Logstash and sets up configuration and pattern files.
+
+## License
+
+This cookbook is licensed and distributed under the Simplified BSD license.
+See [LICENSE](https://github.com/verdigris-cookbooks/opsworks-rabbitmq/blob/master/LICENSE)
+for more details.

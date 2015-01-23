@@ -1,25 +1,20 @@
-default['opsworks_logstash']['instance_name'] = 'server'
+default['opsworks_logstash']['instance_name'] = if node[:opsworks] &&
+  node[:opsworks][:instance] && node[:opsworks][:instance][:layers].length > 0
+    node[:opsworks][:instance][:layers][0]
+  else
+    'server'
+  end
 
-# Default Logstash Indexer settings
-indexer = default['logstash']['instance']['indexer']
-indexer['config_templates'] = {}
-indexer['config_templates_cookbook'] = 'opsworks_logstash'
-indexer['config_templates_variables'] = { instance_name: "indexer" }
-indexer['inputs'] = []
-indexer['filters'] = []
-indexer['outputs'] = []
-indexer['pattern_templates'] = {}
-indexer['pattern_templates_cookbook'] = 'opsworks_logstash'
-indexer['pattern_templates_variables'] = { instance_name: "indexer" }
+instance_name = node['opsworks_logstash']['instance_name']
 
-# Default Logstash Shipper settings
-shipper = default['logstash']['instance']['shipper']
-shipper['config_templates'] = {}
-shipper['config_templates_cookbook'] = 'opsworks_logstash'
-shipper['config_templates_variables'] = { instance_name: "shipper" }
-shipper['inputs'] = []
-shipper['filters'] = []
-shipper['outputs'] = []
-shipper['pattern_templates'] = {}
-shipper['pattern_templates_cookbook'] = 'opsworks_logstash'
-shipper['pattern_templates_variables'] = { instance_name: "shipper" }
+# Default Logstash settings
+instance = default['logstash']['instance'][instance_name]
+instance['config_templates'] = {}
+instance['config_templates_cookbook'] = 'opsworks_logstash'
+instance['config_templates_variables'] = { instance_name: instance_name }
+instance['inputs'] = []
+instance['filters'] = []
+instance['outputs'] = []
+instance['pattern_templates'] = {}
+instance['pattern_templates_cookbook'] = 'opsworks_logstash'
+instance['pattern_templates_variables'] = { instance_name: instance_name }

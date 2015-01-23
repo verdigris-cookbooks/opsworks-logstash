@@ -29,10 +29,23 @@
 
 name = node['opsworks_logstash']['instance_name']
 
+# Install logstash
 logstash_instance name do
   action :create
 end
 
+# Enable and start logstash service
 logstash_service name do
   action :enable
+end
+
+# Generate configuration files
+logstash_config name do
+  action :create
+  notifies :restart, "logstash_service[#{name}]", :delayed
+end
+
+# Generate and install patterns
+logstash_pattern name do
+  action :create
 end
