@@ -1,3 +1,10 @@
+# v0.4
+
+* Indexer and shipper recipes now deprecated in favor of default recipe
+* Default recipe handles the same setup procedure as the indexer and shipper
+  recipes
+* ChefSpec test updated
+
 # v0.3.1
 
 * Updates default attributes for indexer and shipper recipes
