@@ -14,6 +14,7 @@ filter {
       break_on_match => false
       patterns_dir => "@patterns_dir"
       match => [ "message", "%{BUD_ERROR_CODE:bud_error_code}" ]
+      tag_on_failure => []
     }
     syslog_pri {}
     if [program] == "connmand" and [syslog_severity_code] <= 3 {
@@ -38,11 +39,10 @@ filter {
           add_field => { "bud_error_code" => "CON000" }
         }
       }
-
-      if [syslog_facility] == "kernel" and [syslog_severity] == "emergency" and "Kernel panic" in [message] {
-        mutate {
-          add_field => { "bud_error_code" => "REB102" }
-        }
+    }
+    if [syslog_facility] == "kernel" and [syslog_severity] == "emergency" and "Kernel panic" in [message] {
+      mutate {
+        add_field => { "bud_error_code" => "REB102" }
       }
     }
   }
