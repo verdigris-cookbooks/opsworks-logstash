@@ -1,3 +1,8 @@
+# v0.4.1
+
+* Remove grokparsefailure error
+* The kernel panic parsing is nested incorrectly -- fixed
+
 # v0.4
 
 * Indexer and shipper recipes now deprecated in favor of default recipe
